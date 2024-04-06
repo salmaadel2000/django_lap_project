@@ -4,73 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS for styling -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles -->
     <style>
         body {
-            background-color: #f7efd2; /* Set background color */
+            background-color: #f7efd2; /* Background color */
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Make sure content takes up full height */
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
         }
         .login-container {
             margin-top: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-grow: 1; 
-            width: 80%; 
-        
+            flex-grow: 1;
+            width: 60%;
         }
         .login-form {
-            background-color: #eed7a1;
-            border-color: #cd8b62;
-            color: #475c6c; 
-            border-radius: 5px;
+            background-color: #eed7a1; 
             padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 100%; 
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+            width:80%;
+            margin: auto;
         }
-        .form-control {
-            color: #475c6c; 
-        }
-        .btn-primary {
+        .btn ,.btn-primary ,.btn-block{   
+            width: 30%;
+            background-color: #cd8b62;
+            border: 1px solid #cd8b62;
+            margin: auto
+        };
+        .btn, .btn-primary, .btn-block:hover {
             background-color: #475c6c; 
-            border-color: #475c6c; 
-            color: #f7efd2; 
         }
-        .btn-primary:hover {
-            background-color: #8a8583;
-            border-color: #8a8583; 
-            color: #f7efd2; 
+        .alert{
+            color:red
         }
-    </style>
+
+            </style>
 </head>
 <body>
     <div class="container login-container">
-        <div class="row justify-content-center" style="width: 70%;">
+        <div class="row justify-content-center" style="width: 100%;">
             <div class="col-md-12">
                 <div class="login-form">
                     <h2 class="text-center mb-4">Login</h2>
-                    <form method="post">
+                    <!-- Display any messages here -->
+                    <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <a href="{% url 'categorie.main' %}">login</a>
-                        </button>
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} mb-3" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

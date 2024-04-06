@@ -1,16 +1,12 @@
-
-from .views import landing
 from django.urls import path
-from .views import categories_index, category_show, CreateCategoryView, login_view, edit_category, delete_category
-# include categories urls
+from . import views
+
 urlpatterns = [
-
-    path('cats', landing, name='categorie'),
-    path('create', CreateCategoryView.as_view(), name='categorie.create'),
-    path('main', categories_index, name='categorie.main'),
-     path('', login_view, name='login'),
-    path('<int:id>', category_show, name='categorie.show'),
-    path('edit/<int:id>', edit_category, name='edit'),
-   path('delete/<int:id>', delete_category, name='delete_category'),
-
+    path('', views.login_view, name='login'),  # Login page
+    path('landing/', views.landing, name='landing'),  # Landing page
+    path('main/', views.categories_index, name='categorie.main'),  # Main page showing all categories
+    path('create/', views.CreateCategoryView.as_view(), name='categorie.create'),  # Page for creating a new category
+    path('<int:id>/', views.category_show, name='categorie.show'),  # Detail page for a specific category
+    path('edit/<int:id>/', views.edit_category, name='edit'),  # Page for editing an existing category
+    path('delete/<int:id>/', views.delete_category, name='delete_category'),  # Route for deleting a category
 ]
