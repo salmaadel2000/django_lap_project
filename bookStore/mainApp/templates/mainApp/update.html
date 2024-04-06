@@ -1,0 +1,81 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+   
+    body {
+        background-color: #f7efd2; 
+    }
+
+    .main {
+        background-color: #eed7a1;
+        border-radius: 10px; 
+        padding: 20px; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        margin-top: 50px; 
+        width: 50%; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+
+    h2 {
+        color: #475c6c; 
+    }
+
+    label {
+        color: #475c6c; 
+    }
+
+    .form-control {
+        background-color: #f7efd2; 
+        border-color: #cd8b62; 
+        color: #475c6c;
+    }
+
+    .form-control:focus {
+        background-color: #f7efd2; 
+        border-color: #475c6c;
+        color: #475c6c;
+    }
+
+    .btn-primary {
+        background-color: #475c6c; 
+        border-color: #475c6c;
+        color: #f7efd2;
+        margin-top: 20px; }
+
+    .btn-primary:hover {
+        background-color: #8a8583;
+        border-color: #8a8583; 
+        color: #f7efd2;
+    }
+</style>
+
+<div class="container main mt-4">
+    <h2>Update Book</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="no_of_pages" class="form-label">Number of Pages</label>
+            <input type="number" class="form-control" id="no_of_pages" name="no_of_pages" value="{{ book.no_of_pages }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author" value="{{ book.author }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ book.price }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="{% static 'images/' %}{{ book.image }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Book</button>
+    </form>
+</div>
+{% endblock %}

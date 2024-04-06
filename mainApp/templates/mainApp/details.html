@@ -1,0 +1,106 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color: #f7efd2; 
+    }
+
+    .card {
+        background-color: #eed7a1;
+        border-color: #cd8b62;
+        color: #475c6c;
+        margin-top: 50px;
+        width: 40%; 
+        margin-left: auto;
+        margin-right: auto; 
+    }
+
+    .card-title {
+        color: #475c6c;
+    }
+
+    .card-text {
+        color: #475c6c; 
+    }
+
+    .btn-danger {
+        background-color: #cd8b62; 
+        border-color: #cd8b62; 
+        color: #f7efd2; 
+        margin-right: 10px; 
+    }
+
+    .btn-danger:hover {
+        background-color: #8a8583; 
+        border-color: #8a8583;
+        color: #f7efd2; 
+    }
+
+    .btn-primary {
+        background-color: #475c6c; 
+        border-color: #475c6c; 
+        color: #f7efd2;
+    }
+
+    .btn-primary:hover {
+        background-color: #8a8583;
+        border-color: #8a8583; 
+        color: #f7efd2; 
+    }
+</style>
+
+<div class="card">
+    <img src="{{ product.image_url }}" class="card-img-top" alt="Book Image " style="height: 350px;">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">Price: {{ product.price }}</p>
+        <p class="card-text">Number of Pages: {{ product.no_of_pages }}</p>
+        <p class="card-text">Author: {{ product.author }}</p>
+        <p class="card-text">Category: {{ product.category.name }}</p>
+        <form id="delete-form" action="{% url 'delete' product.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="button" id="delete-button" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="{% url 'update' product.id %}" class="btn btn-primary">Update</a>
+    </div>
+</div>
+<script>
+    document.getElementById('delete-button').addEventListener('click', function() {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this product!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            customClass: {
+                confirmButton: 'btn btn-danger',
+                cancelButton: 'btn btn-primary',
+                popup: 'custom-sweetalert-popup'
+            },
+            buttonsStyling: false,
+            confirmButtonColor: '#cd8b62',
+            cancelButtonColor: '#475c6c'
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                document.getElementById('delete-form').submit();
+            } else {
+                swal("Your product is safe!", {
+                    icon: "info",
+                });
+            }
+        });
+    });
+</script>
+
+<style>
+    .custom-sweetalert-popup {
+        background-color: #cd8b62;
+        border: 2px solid #cd8b62;
+        color: #475c6c;
+    }
+</style>
+
+
+{% endblock %}

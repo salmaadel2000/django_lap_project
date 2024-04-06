@@ -1,0 +1,123 @@
+{% extends 'layouts/base.html' %}
+
+{% block PageTitle %} Add New Book {% endblock %}
+{% block Title %} Add New Book {% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #475c6c; 
+    }
+
+    .main {
+        background-color: #eed7a1; 
+        border-radius: 10px; 
+        padding: 30px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
+    }
+
+    label {
+        color: #475c6c; 
+    }
+
+    .form-control,select {
+        background-color: #f6f7d2; 
+        border: 1px solid #cd8b62; 
+        color: #475c6c;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        background-color: #f7efd2; 
+        border-color: #475c6c;
+        color: #475c6c;
+        outline: none;
+    }
+
+    .btn-primary {
+        background-color: #475c6c; 
+        border-color: #475c6c; 
+    }
+
+    .btn-primary:hover {
+        background-color: #8a8583; 
+        border-color: #8a8583; 
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+    }
+    */
+
+    /* Style for select options */
+    select.form-control option {
+        /* Add your select option styles here */
+        background-color: #f6f7d2;
+        color: #475c6c;
+    }
+</style>
+
+<div class="container main mt-4">
+    <h2>Add New Book</h2>
+    <form method="post" enctype="multipart/form-data" id="bookForm">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label" for="id_title">Title:</label>
+            {{ form.title }}
+            {% for error in form.title.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="id_no_of_pages">Number of Pages:</label>
+            {{ form.no_of_pages }}
+            {% for error in form.no_of_pages.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="id_author">Author:</label>
+            {{ form.author }}
+            {% for error in form.author.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="id_price">Price:</label>
+            {{ form.price }}
+            {% for error in form.price.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="id_category">Category:</label>
+            {{ form.category }}
+            {% for error in form.category.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label" for="id_image">Image:</label>
+            {{ form.image }}
+            {% for error in form.image.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('input, textarea, select').forEach(function(input) {
+            input.removeAttribute('required');
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+
+{% block PageTitle %} About Us {% endblock %}
+
+{% block Title %} About Us {% endblock %}
+
+{% block content %}
+    <style>
+       
+        body {
+            background-color: #f7efd2;
+        }
+
+        .about-section {
+            padding: 80px 0; 
+            background-color: #475c6c; 
+            color: #fff; 
+        }
+
+        .team-member {
+            background-color: #eed7a1; 
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px; 
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
+        }
+
+        .card-title {
+            color: #475c6c; 
+        }
+
+        .card-text {
+            color: #8a8583; 
+        }
+    </style>
+
+    <div class="about-section">
+        <div class="container">
+            <h1 class="text-center mb-5">About Us</h1>
+            <p class="lead text-center">Welcome to Our Website! We are a team of passionate individuals dedicated to providing you with the best experience.</p>
+            <p class="lead text-center">Our mission is to make your life easier by offering high-quality products/services and exceptional customer support.</p>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Our Team</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h5 class="card-title">John Doe</h5>
+                    <p class="card-text">CEO</p>
+                    <p class="card-text">John is passionate about technology and entrepreneurship.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h5 class="card-title">Jane Smith</h5>
+                    <p class="card-text">COO</p>
+                    <p class="card-text">Jane ensures smooth operations and customer satisfaction.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h5 class="card-title">Alex Johnson</h5>
+                    <p class="card-text">CTO</p>
+                    <p class="card-text">Alex leads the development team to create innovative solutions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

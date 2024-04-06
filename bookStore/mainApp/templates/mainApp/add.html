@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+
+{% block PageTitle %} Add New Book {% endblock %}
+{% block Title %} Add New Book {% endblock %}
+
+{% block content %}
+<style>
+
+    body {
+        background-color: #475c6c; 
+    }
+
+    .main {
+        background-color: #eed7a1; 
+        border-radius: 10px; 
+        padding: 30px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
+    }
+
+    .form-label {
+        color: #475c6c; }
+
+    .form-control {
+        background-color: #f7efd2; 
+        border-color: #cd8b62; 
+    }
+
+    .btn-primary {
+        background-color: #475c6c; 
+        border-color: #475c6c; 
+    }
+
+    .btn-primary:hover {
+        background-color: #8a8583; 
+        border-color: #8a8583; 
+    }
+
+</style>
+
+<div class="container main mt-4">
+    <h2>Add New Book</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="no_of_pages" class="form-label">Number of Pages</label>
+            <input type="number" class="form-control" id="no_of_pages" name="no_of_pages" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+</div>
+{% endblock %}

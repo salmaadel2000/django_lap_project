@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block PageTitle %} Home {% endblock %}
+{% block Title %} Books {% endblock %}
+
+{% block content %}
+<style>
+ 
+    body {
+        background-color: #eed7a1; 
+    }
+
+    h2 {
+        color: #475c6c; 
+    }
+
+    th {
+        background-color: #475c6c; 
+        color: #f7efd2; 
+    }
+
+    .btn-primary {
+        background-color: #cd8b62; 
+        border-color: #cd8b62; 
+        color: #f7efd2;
+    }
+
+    .btn-primary:hover {
+        background-color: #8a8583; 
+        border-color: #8a8583; 
+        color: #f7efd2; 
+    }
+
+    .table {
+        background-color: #f7efd2; 
+    }
+
+    tbody tr:hover {
+        background-color: #8a8583; 
+    }
+
+    tbody td {
+        color: #475c6c;
+    }
+
+    a {
+        color: #f7efd2; /* Light beige link color */
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>Books</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">No. of Pages</th>
+                <th scope="col">Author</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+             <tr>
+                 <td>{{ book.id }}</td>
+                 <td>{{ book.title }}</td>
+                 <td>{{ book.no_of_pages }}</td>
+                 <td>{{ book.author }}</td>
+                 <td>{{ book.price }}</td>
+                 <td><a class="btn btn-primary" href="{% url 'details' book.id %}">Show</a></td>
+             </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="btn btn-primary"><a href="{% url 'add' %}" style="color: #f7efd2;">Add New Book</a></button>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'layouts/base.html' %}
+
+{% block PageTitle %} Add New Category {% endblock %}
+{% block Title %} Add New Category {% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #475c6c; 
+    }
+
+    .main {
+        background-color: #eed7a1; 
+        border-radius: 10px; 
+        padding: 30px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
+    }
+
+    label {
+        color: #475c6c; 
+    }
+
+    input {
+        background-color: #f6f7d2; 
+        border: 1px solid #cd8b62; 
+        color: #475c6c;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    input:focus {
+        background-color: #f7efd2; 
+        border-color: #475c6c;
+        color: #475c6c;
+        outline: none;
+    }
+
+    .btn-primary {
+        background-color: #475c6c; 
+        border-color: #475c6c; 
+    }
+
+    .btn-primary:hover {
+        background-color: #8a8583; 
+        border-color: #8a8583; 
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+
+<div class="container main mt-4">
+    <h2>Add New Category</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label" for="id_name">Name:</label>
+            {{ form.name }}
+            {% for error in form.name.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="id_description">Description:</label>
+            {{ form.description }}
+            {% for error in form.description.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('input, textarea, select').forEach(function(input) {
+            input.removeAttribute('required');
+        });
+    });
+</script>
+
+{% endblock %}

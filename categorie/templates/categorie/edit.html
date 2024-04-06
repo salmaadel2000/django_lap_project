@@ -1,0 +1,51 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color: #f7efd2; 
+    }
+
+    .card {
+        background-color: #eed7a1;
+        border-color: #cd8b62;
+        color: #475c6c;
+        margin-top: 50px;
+        width: 40%; 
+        margin-left: auto;
+        margin-right: auto; 
+    }
+
+    .card-title {
+        color: #475c6c;
+    }
+
+    .card-text {
+        color: #475c6c; 
+    }
+
+    .btn-primary {
+        background-color: #475c6c; 
+        border-color: #475c6c; 
+        color: #f7efd2;
+    }
+
+    .btn-primary:hover {
+        background-color: #8a8583;
+        border-color: #8a8583; 
+        color: #f7efd2; 
+    }
+</style>
+
+<h2>Edit Category</h2>
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  {# Render the form fields #}
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
